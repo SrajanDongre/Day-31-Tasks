@@ -2,16 +2,16 @@
 Ans:-  db.products.find().toArray()
 
 (2)  Find the product price which are between 400 to 800
-Ans:-  db.products.find($and:[{product_price:{$gt:400}},{product_price:{$gt:800}}]).pretty()
+Ans:-  db.products.find($and:[{product_price:{$gt:400}},{product_price:{$lt:800}}]).pretty()
 
 (3)  Find the product price which are not between 400 to 600
-Ans:-  db.products.find(
+Ans:-  db.products.find($not:[{product_price:{$gt:400}},{product_price:{$lt:600}}]).pretty()
 
 (4)  List the four product which are grater than 500 in price 
 Ans:-  db.products.find({product_price:{$gt:500}}).limit(4)
 
 (5)  Find the product name and product material of each products
-Ans:-  db.products.find
+Ans:-  db.products.find({product_name:"small soft chair"},{product_material:"fresh"},{id:1 , product_name:" ",product_material:" "})
 
 (6)  Find the product with a row id of 10
 Ans:-  db.products.find({id:{$eq:10}})
@@ -23,4 +23,4 @@ Ans:-  db.products.find({product_material:"soft"})
 Ans:-  db.products.find({product_color:"indigo"},{product_price:{$eq:492.0}})
 
 (9)  Delete the products which product price value are same
-Ans:-  db.products.delete({product_price:{$eq:{product_price}}})
+Ans:-  db.products.ensureIndex({product_price:1},{unique:true , dropDups:true})
